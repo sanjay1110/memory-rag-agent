@@ -1,0 +1,7 @@
+faiss-cpu>=1.8
+numpy>=1.26
+anthropic>=0.40        # only used when ANTHROPIC_API_KEY is set
+matplotlib>=3.8        # evaluation chart
+pytest>=8
+# optional: dense neural embeddings (MEMAGENT_EMBEDDER=sentence-transformers)
+# sentence-transformers>=3.0

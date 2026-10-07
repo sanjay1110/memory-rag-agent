@@ -1,0 +1,51 @@
+## Turn events
+- Marked task step done: Write the service manifest
+- Next step: Move secrets to Vault
+
+## User profile & preferences
+- language: Python examples
+- style: concise
+
+## Task progress
+- Migrate orders-api to Nimbus — 2/7 steps done (status: in_progress)
+    [x] Containerise the service — done in s-ebfc0c9c
+    [x] Write the service manifest — done in s-eb48c50a
+    [ ] Move secrets to Vault
+    [ ] Migrate the database
+    [ ] Set up observability
+    [ ] Canary launch
+    [ ] Decommission v1
+    next: Move secrets to Vault
+
+## Previous sessions
+- 2026-10-07T17:14: Hi, my name is Priya. I'm migrating the orders-api service from v1 to Nimbus.; I prefer Python examples. Please keep answers concise.; Our region is eu-west-1 because we store EU customer data.; Which base image should I use to containerise it?; I've finished containerise the service.; We decided to use logical replication for the database move.
+
+## Long-term memories about this user
+- User's name is Priya (fact)
+- Decision: use logical replication for the database move (decision)
+- User is working on task: Migrate orders-api to Nimbus (fact)
+- User prefers Python examples (preference)
+- User prefers concise (preference)
+- User's deployment region is eu-west-1 (fact)
+
+## Pinned knowledge
+[P1] (migration_guide.md § Step 3: Move secrets to Vault) Copy every credential from the legacy configuration files into Vault and delete them from the old hosts. Reference them from the manifest; never bake them into the image.
+[P2] (secrets_auth.md § Secret storage) All secrets live in Vault under the path `secret/nimbus/<team>/<service>`. Secrets are injected into containers at start-up as files under `/run/secrets`, never as plain environment variables and never committed to `.env` files or the repository. The secret scanner blocks any commit that contains a credential pattern.
+
+## Working memory
+Active task: Migrate orders-api to Nimbus (status: in_progress)
+  [x] Containerise the service
+  [>] Write the service manifest
+  [ ] Move secrets to Vault
+  [ ] Migrate the database
+  [ ] Set up observability
+  [ ] Canary launch
+  [ ] Decommission v1
+- (observation:workflow) Step completed: Containerise the service
+
+## Recent turns
+user: Hey, where did we leave off?
+assistant: You're working on 'Migrate orders-api to Nimbus': 1 of 7 steps done, next step is 'Write the service manifest'.
+
+## Current user message
+Done with the service manifest.

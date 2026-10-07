@@ -1,0 +1,14 @@
+[
+  {"id": "c01", "question": "How do I roll back a release?", "paraphrase": "What's the command to revert to a previous release?", "answer_keywords": ["nimbus rollback"]},
+  {"id": "c02", "question": "What is the maximum NIMBUS_DB_POOL value?", "paraphrase": "How high can the database connection pool go?", "answer_keywords": ["100"]},
+  {"id": "c03", "question": "How long are database backups retained?", "paraphrase": "For how many days are nightly backups kept?", "answer_keywords": ["14 days"]},
+  {"id": "c04", "question": "How often must secrets be rotated?", "paraphrase": "What is the rotation interval for credentials?", "answer_keywords": ["90 days"]},
+  {"id": "c05", "question": "What is the default API gateway rate limit?", "paraphrase": "How many requests per minute does a client get by default?", "answer_keywords": ["1000"]},
+  {"id": "c06", "question": "How long are logs retained in Loki?", "paraphrase": "For how many days do we keep logs?", "answer_keywords": ["30 days"]},
+  {"id": "c07", "question": "How fast must a Sev1 incident be acknowledged?", "paraphrase": "What is the acknowledgement time for a sev1 outage?", "answer_keywords": ["5 minutes"]},
+  {"id": "c08", "question": "When is a postmortem due after a Sev1?", "paraphrase": "How many business days do we have to publish the postmortem?", "answer_keywords": ["5 business days"]},
+  {"id": "c09", "question": "Which tags are required on every resource?", "paraphrase": "What tags must cloud resources carry?", "answer_keywords": ["team", "service", "env"]},
+  {"id": "c10", "question": "Which region must store EU customer data?", "paraphrase": "Where do EU customers' personal data have to live?", "answer_keywords": ["eu-west-1"]},
+  {"id": "c11", "question": "What percentage of traffic does the canary receive?", "paraphrase": "How much production traffic goes to a canary release?", "answer_keywords": ["5%"]},
+  {"id": "c12", "question": "What is the p99 latency objective for tier-1 services?", "paraphrase": "What latency SLO do tier-1 services have?", "answer_keywords": ["300"]}
+]

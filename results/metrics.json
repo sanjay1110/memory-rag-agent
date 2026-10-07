@@ -1,0 +1,482 @@
+{
+  "config": {
+    "embedder": "hashing-ngram-v1",
+    "llm": "offline-extractive",
+    "chunks": 46,
+    "final_k": 4,
+    "min_relevance": 0.2,
+    "relative_floor": 0.5,
+    "context_token_budget": 2400
+  },
+  "retrieval": {
+    "n": 36,
+    "by_mode": {
+      "dense_only": {
+        "hit@1": 0.861,
+        "hit@3": 0.972,
+        "recall@5": 0.972,
+        "mrr": 0.917,
+        "ndcg@5": 0.927
+      },
+      "bm25_only": {
+        "hit@1": 0.861,
+        "hit@3": 0.944,
+        "recall@5": 0.944,
+        "mrr": 0.903,
+        "ndcg@5": 0.909
+      },
+      "hybrid_rrf": {
+        "hit@1": 0.861,
+        "hit@3": 0.944,
+        "recall@5": 0.972,
+        "mrr": 0.91,
+        "ndcg@5": 0.923
+      },
+      "hybrid_rerank": {
+        "hit@1": 0.889,
+        "hit@3": 0.972,
+        "recall@5": 0.972,
+        "mrr": 0.931,
+        "ndcg@5": 0.937
+      }
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "question": "How do I undo a bad production release?",
+        "top1": "faq.md \u00a7 How do I roll back a bad release?",
+        "top1_score": 0.724,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q02",
+        "question": "What percentage of traffic goes to the canary and for how long?",
+        "top1": "migration_guide.md \u00a7 Step 6: Canary launch",
+        "top1_score": 0.566,
+        "hit@1": 0.0
+      },
+      {
+        "id": "q03",
+        "question": "When does a canary get rolled back automatically?",
+        "top1": "deployments.md \u00a7 Canary analysis",
+        "top1_score": 0.735,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q04",
+        "question": "Can I ship to production on a Friday evening?",
+        "top1": "faq.md \u00a7 Why was my deploy blocked on a Friday afternoon?",
+        "top1_score": 0.569,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q05",
+        "question": "How are queues and caches deployed?",
+        "top1": "deployments.md \u00a7 Stateful services",
+        "top1_score": 0.769,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q06",
+        "question": "What is the maximum value for the database connection pool?",
+        "top1": "databases.md \u00a7 Connection pooling",
+        "top1_score": 0.756,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q07",
+        "question": "Which environment variable controls PgBouncer pool size?",
+        "top1": "databases.md \u00a7 Connection pooling",
+        "top1_score": 0.728,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q08",
+        "question": "How long are database backups retained?",
+        "top1": "databases.md \u00a7 Backups and restore",
+        "top1_score": 0.689,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q09",
+        "question": "How do I recover a database to an earlier point in time?",
+        "top1": "migration_guide.md \u00a7 Step 4: Database migration",
+        "top1_score": 0.403,
+        "hit@1": 0.0
+      },
+      {
+        "id": "q10",
+        "question": "What pattern must schema changes follow so rollbacks stay safe?",
+        "top1": "deployments.md \u00a7 Rollback",
+        "top1_score": 0.532,
+        "hit@1": 0.0
+      },
+      {
+        "id": "q11",
+        "question": "What is the lock timeout for migration statements?",
+        "top1": "databases.md \u00a7 Schema migrations",
+        "top1_score": 0.8,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q12",
+        "question": "How should I move a large database without downtime?",
+        "top1": "migration_guide.md \u00a7 Step 4: Database migration",
+        "top1_score": 0.748,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q13",
+        "question": "Where do I store API keys and passwords for my service?",
+        "top1": "migration_guide.md \u00a7 Regions and data residency",
+        "top1_score": 0.392,
+        "hit@1": 0.0
+      },
+      {
+        "id": "q14",
+        "question": "How often must credentials be rotated?",
+        "top1": "secrets_auth.md \u00a7 Rotation",
+        "top1_score": 0.735,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q15",
+        "question": "How do services authenticate when calling each other?",
+        "top1": "secrets_auth.md \u00a7 Service-to-service authentication",
+        "top1_score": 0.735,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q16",
+        "question": "When does an SSO access token expire?",
+        "top1": "secrets_auth.md \u00a7 User authentication",
+        "top1_score": 0.518,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q17",
+        "question": "What is the default request limit on the API gateway?",
+        "top1": "rate_limits.md \u00a7 Default limits",
+        "top1_score": 0.991,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q18",
+        "question": "What does the E429 error mean and how should clients react?",
+        "top1": "rate_limits.md \u00a7 Throttling behaviour",
+        "top1_score": 0.505,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q19",
+        "question": "How do I get my rate limit quota increased?",
+        "top1": "rate_limits.md \u00a7 Requesting a higher quota",
+        "top1_score": 0.781,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q20",
+        "question": "How can I stop one noisy tenant from using up the shared limit?",
+        "top1": "rate_limits.md \u00a7 Per-tenant quotas",
+        "top1_score": 0.605,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q21",
+        "question": "How long are logs kept?",
+        "top1": "observability.md \u00a7 Logging",
+        "top1_score": 0.508,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q22",
+        "question": "What fraction of requests is traced?",
+        "top1": "observability.md \u00a7 Tracing",
+        "top1_score": 0.448,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q23",
+        "question": "What is the p99 latency objective for tier-1 services?",
+        "top1": "observability.md \u00a7 Service level objectives",
+        "top1_score": 0.9,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q24",
+        "question": "Which alerts page the on-call engineer?",
+        "top1": "observability.md \u00a7 Alerting",
+        "top1_score": 0.888,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q25",
+        "question": "How quickly must a sev1 be acknowledged?",
+        "top1": "incidents.md \u00a7 Severity levels",
+        "top1_score": 0.608,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q26",
+        "question": "Who decides on mitigation during an outage?",
+        "top1": "incidents.md \u00a7 Roles",
+        "top1_score": 0.569,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q27",
+        "question": "How often should the status page be updated during a major outage?",
+        "top1": "incidents.md \u00a7 Communication",
+        "top1_score": 0.673,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q28",
+        "question": "When must the postmortem be published?",
+        "top1": "incidents.md \u00a7 Postmortems",
+        "top1_score": 0.791,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q29",
+        "question": "What happens when my team hits 80% of its monthly budget?",
+        "top1": "cost.md \u00a7 Team budgets",
+        "top1_score": 0.771,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q30",
+        "question": "Which tags are mandatory on cloud resources?",
+        "top1": "cost.md \u00a7 Required tags",
+        "top1_score": 0.638,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q31",
+        "question": "Can spot instances run my latency-sensitive API?",
+        "top1": "faq.md \u00a7 Can I use spot instances for my API?",
+        "top1_score": 0.784,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q32",
+        "question": "Which base image should a Python service use when containerising?",
+        "top1": "migration_guide.md \u00a7 Step 1: Containerise",
+        "top1_score": 0.746,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q33",
+        "question": "What goes into the nimbus.yaml manifest?",
+        "top1": "migration_guide.md \u00a7 Step 2: Write the service manifest",
+        "top1_score": 0.661,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q34",
+        "question": "When can the old v1 virtual machines be turned off?",
+        "top1": "migration_guide.md \u00a7 Step 7: Decommission v1",
+        "top1_score": 0.596,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q35",
+        "question": "Which region must hold EU customer personal data?",
+        "top1": "migration_guide.md \u00a7 Regions and data residency",
+        "top1_score": 0.818,
+        "hit@1": 1.0
+      },
+      {
+        "id": "q36",
+        "question": "What alerts are needed before a migrated service takes production traffic?",
+        "top1": "migration_guide.md \u00a7 Step 5: Observability",
+        "top1_score": 0.613,
+        "hit@1": 1.0
+      }
+    ]
+  },
+  "context": {
+    "context_precision": 0.725,
+    "answer_support": 0.972,
+    "tokens_before": 608.194,
+    "tokens_after": 101.278,
+    "items_after": 1.972,
+    "token_reduction": 0.833,
+    "filtered_total": 353,
+    "near_dup_removed_total": 2,
+    "compacted_total": 0,
+    "queries_with_dedup": 2
+  },
+  "context_ablation": {
+    "raw top-k (no optimisation)": {
+      "context_precision": 0.285,
+      "answer_support": 0.972,
+      "items_after": 3.889,
+      "tokens_after": 193.083
+    },
+    "+ absolute floor": {
+      "context_precision": 0.461,
+      "answer_support": 0.972,
+      "items_after": 3.028,
+      "tokens_after": 152.778
+    },
+    "+ relative floor": {
+      "context_precision": 0.736,
+      "answer_support": 0.972,
+      "items_after": 2,
+      "tokens_after": 102.306
+    },
+    "+ dedup (full pipeline)": {
+      "context_precision": 0.725,
+      "answer_support": 0.972,
+      "items_after": 1.972,
+      "tokens_after": 101.278
+    }
+  },
+  "compaction_stress": {
+    "answer_support": 0.917,
+    "tokens_after": 61.667,
+    "token_reduction": 0.899,
+    "compacted_total": 32
+  },
+  "filter_calibration": {
+    "relevance_floor": 0.2,
+    "gold_kept_rate": 1.0,
+    "non_gold_filtered_rate": 0.723,
+    "mean_gold_score": 0.659,
+    "mean_non_gold_score": 0.147
+  },
+  "memory": {
+    "fact_recall@3": 1.0,
+    "stale_value_rate": 0.0,
+    "stored_memories": 8,
+    "memory_precision": 1.0,
+    "duplicate_pairs": 0,
+    "superseded_with_history": 1,
+    "episodes": 3,
+    "probes": [
+      {
+        "probe": "What is the user's name?",
+        "expected": "Priya",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "User's name is Priya || User prefers concise || User's deployment region is eu-west-1"
+      },
+      {
+        "probe": "Which region does the user deploy to?",
+        "expected": "eu-west-1",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "User's deployment region is eu-west-1 || User prefers concise || User's name is Priya"
+      },
+      {
+        "probe": "Which programming language does the user prefer for examples?",
+        "expected": "Go",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "User prefers Go examples from now on || User prefers concise || User's name is Priya"
+      },
+      {
+        "probe": "What did we decide about the database migration?",
+        "expected": "logical replication",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "Decision: use logical replication for the database move || User is migrating the orders-api service from v1 to Nimbus || User is working on task: Migrate orders-api to Nimbus"
+      },
+      {
+        "probe": "What is the project deadline?",
+        "expected": "November 14",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "Project deadline is November 14 || User is working on task: Migrate orders-api to Nimbus || User prefers concise"
+      },
+      {
+        "probe": "Which service is the user migrating?",
+        "expected": "orders-api",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "User is migrating the orders-api service from v1 to Nimbus || User is working on task: Migrate orders-api to Nimbus || User prefers concise"
+      },
+      {
+        "probe": "How should answers be formatted for this user?",
+        "expected": "concise",
+        "found": true,
+        "stale_value_returned": false,
+        "top3": "User's name is Priya || User prefers concise || User prefers Go examples from now on"
+      }
+    ]
+  },
+  "consistency": {
+    "repeat": {
+      "keyword_agreement": 1.0,
+      "both_correct": 1.0,
+      "source_jaccard": 1.0,
+      "answer_similarity": 1.0
+    },
+    "paraphrase": {
+      "keyword_agreement": 0.917,
+      "both_correct": 0.917,
+      "source_jaccard": 0.736,
+      "answer_similarity": 0.764
+    },
+    "n_pairs": 12
+  },
+  "continuity": {
+    "pass_rate": 1.0,
+    "checks": [
+      {
+        "check": "Session 2 resumes at the right next step",
+        "session": 2,
+        "message": "Hey, where did we leave off?",
+        "passed": true
+      },
+      {
+        "check": "Completed step from session 1 is visible in session 2",
+        "session": 2,
+        "message": "Hey, where did we leave off?",
+        "passed": true
+      },
+      {
+        "check": "Region fact from session 1 is loaded upfront in session 2",
+        "session": 2,
+        "message": "Hey, where did we leave off?",
+        "passed": true
+      },
+      {
+        "check": "Superseded preference (Go) is what session 3 sees",
+        "session": 3,
+        "message": "What do you remember about me and this project?",
+        "passed": true
+      },
+      {
+        "check": "Decision from session 1 is recalled in session 3",
+        "session": 3,
+        "message": "What did we decide for the database move?",
+        "passed": true
+      },
+      {
+        "check": "Session 3 knows the next step after three sessions of progress",
+        "session": 3,
+        "message": "What's the next step?",
+        "passed": true
+      }
+    ]
+  },
+  "efficiency": {
+    "turns": 19,
+    "jit_knowledge_calls": 4,
+    "served_from_upfront": 3,
+    "no_retrieval_needed": 12,
+    "mean_context_tokens": 680.5,
+    "max_context_tokens": 999,
+    "context_budget": 2400,
+    "upfront_tokens_per_session": [
+      0,
+      323,
+      471
+    ],
+    "session_compactions": 3,
+    "compaction_tokens_saved": 364,
+    "mean_turn_latency_ms": 11.6
+  }
+}

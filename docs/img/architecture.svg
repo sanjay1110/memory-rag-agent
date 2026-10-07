@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a4a48"/>
+    </marker>
+    <style>
+      .h   { font-size: 13px; font-weight: 700; letter-spacing: .08em; fill: #5f5e57; }
+      .t   { font-size: 15px; font-weight: 700; fill: #1d1d1b; }
+      .s   { font-size: 12px; fill: #3d3d3a; }
+      .m   { font-size: 11px; fill: #6b6a63; font-family: Menlo, Consolas, monospace; }
+      .ln  { stroke: #4a4a48; stroke-width: 1.6; fill: none; }
+      .dsh { stroke: #4a4a48; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+      .lbl { font-size: 11px; fill: #4a4a48; font-style: italic; }
+    </style>
+  </defs>
+  <rect width="1200" height="900" fill="#ffffff"/>
+
+  <text x="40" y="42" font-size="22" font-weight="700" fill="#1d1d1b">Multi-tier memory &amp; retrieval agent</text>
+  <text x="40" y="64" class="s">Four memory tiers feed a hybrid retrieval pipeline; a context optimiser keeps the prompt inside its budget.</text>
+
+  <!-- user + orchestrator -->
+  <rect x="510" y="84" width="180" height="38" rx="19" fill="#f1f0ea" stroke="#9a998f"/>
+  <text x="600" y="108" text-anchor="middle" class="t">User</text>
+  <path class="ln" d="M600 122 V146" marker-end="url(#a)"/>
+  <rect x="40" y="150" width="1120" height="62" rx="10" fill="#1d1d1b"/>
+  <text x="60" y="176" font-size="15" font-weight="700" fill="#ffffff">MemoryAgent.chat()  —  per-turn loop</text>
+  <text x="60" y="198" font-size="12" fill="#d7d6cf">extract memories → track task progress → plan retrieval (upfront or just-in-time) → retrieve → optimise → build prompt → generate with citations → log</text>
+
+  <!-- column headers -->
+  <text x="40" y="250" class="h">MEMORY TIERS</text>
+  <text x="440" y="250" class="h">RETRIEVAL PIPELINE</text>
+  <text x="820" y="250" class="h">CONTEXT ENGINEERING</text>
+
+  <!-- ===== memory tiers ===== -->
+  <rect x="40" y="262" width="360" height="112" rx="10" fill="#e8f1fc" stroke="#2a78d6" stroke-width="1.5"/>
+  <text x="56" y="286" class="t">Tier 1 · Working memory</text>
+  <text x="56" y="306" class="s">Active task, workflow state (plan, step, vars),</text>
+  <text x="56" y="322" class="s">recent tool outputs. Priority-aware eviction.</text>
+  <text x="56" y="344" class="m">in-process · ≤12 items · ≤900 tokens</text>
+  <text x="56" y="362" class="m">memory/working.py</text>
+
+  <rect x="40" y="386" width="360" height="112" rx="10" fill="#fdeee7" stroke="#eb6834" stroke-width="1.5"/>
+  <text x="56" y="410" class="t">Tier 2 · Session memory</text>
+  <text x="56" y="430" class="s">Conversation history + rolling summary, user</text>
+  <text x="56" y="446" class="s">preferences, multi-session task progress.</text>
+  <text x="56" y="468" class="m">SQLite · last 6 turns verbatim, rest compacted</text>
+  <text x="56" y="486" class="m">memory/session.py</text>
+
+  <rect x="40" y="510" width="360" height="112" rx="10" fill="#e5f6ef" stroke="#1baf7a" stroke-width="1.5"/>
+  <text x="56" y="534" class="t">Tier 3 · Long-term memory</text>
+  <text x="56" y="554" class="s">Facts, preferences, decisions, session episodes.</text>
+  <text x="56" y="570" class="s">Dedup-on-write, slot supersession, importance×recency.</text>
+  <text x="56" y="592" class="m">FAISS + SQLite · collection "memories"</text>
+  <text x="56" y="610" class="m">memory/long_term.py</text>
+
+  <rect x="40" y="634" width="360" height="112" rx="10" fill="#fdf3dc" stroke="#c98500" stroke-width="1.5"/>
+  <text x="56" y="658" class="t">Tier 4 · Knowledge store (RAG)</text>
+  <text x="56" y="678" class="s">Chunked documents with section paths for</text>
+  <text x="56" y="694" class="s">attribution. Dense vectors + BM25 postings.</text>
+  <text x="56" y="716" class="m">FAISS + SQLite · collection "knowledge"</text>
+  <text x="56" y="734" class="m">retrieval/chunking.py · index.py</text>
+
+  <!-- ===== retrieval pipeline ===== -->
+  <rect x="440" y="262" width="340" height="44" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="456" y="282" class="t" font-size="14">Query</text>
+  <text x="456" y="298" class="m">user message (or task title when pinning)</text>
+  <path class="ln" d="M610 306 V324" marker-end="url(#a)"/>
+
+  <rect x="440" y="328" width="340" height="44" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="456" y="348" class="t" font-size="14">Embed</text>
+  <text x="456" y="364" class="m">hashed word/bigram/char n-grams · 1024-d</text>
+  <path class="ln" d="M540 372 V392" marker-end="url(#a)"/>
+  <path class="ln" d="M690 372 V392" marker-end="url(#a)"/>
+
+  <rect x="440" y="396" width="160" height="58" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="454" y="418" class="t" font-size="14">Dense search</text>
+  <text x="454" y="436" class="m">FAISS IP · top 20</text>
+  <rect x="620" y="396" width="160" height="58" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="634" y="418" class="t" font-size="14">Sparse search</text>
+  <text x="634" y="436" class="m">BM25 · top 20</text>
+  <path class="ln" d="M520 454 V474 H600 V486" marker-end="url(#a)"/>
+  <path class="ln" d="M700 454 V474 H620 V486" marker-end="url(#a)"/>
+
+  <rect x="440" y="490" width="340" height="44" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="456" y="510" class="t" font-size="14">Reciprocal rank fusion</text>
+  <text x="456" y="526" class="m">Σ 1/(60 + rank) across both lists</text>
+  <path class="ln" d="M610 534 V552" marker-end="url(#a)"/>
+
+  <rect x="440" y="556" width="340" height="60" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="456" y="576" class="t" font-size="14">Rerank</text>
+  <text x="456" y="592" class="m">cross-features: dense, BM25, IDF coverage,</text>
+  <text x="456" y="606" class="m">heading · + LLM judge when a key is set</text>
+  <path class="ln" d="M610 616 V634" marker-end="url(#a)"/>
+
+  <rect x="440" y="638" width="340" height="60" rx="8" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="456" y="658" class="t" font-size="14">Attributed results</text>
+  <text x="456" y="674" class="m">score + citation "file § section"</text>
+  <text x="456" y="688" class="m">or "memory:kind (session, date)"</text>
+
+  <!-- tiers -> pipeline -->
+  <path class="ln" d="M400 690 H420 V425 H436" marker-end="url(#a)"/>
+  <path class="ln" d="M400 566 H420"/>
+
+  <!-- ===== context engineering ===== -->
+  <rect x="820" y="262" width="340" height="168" rx="10" fill="#f7f7f4" stroke="#1d1d1b" stroke-width="1.5"/>
+  <text x="836" y="286" class="t">Hybrid loader</text>
+  <rect x="836" y="298" width="150" height="120" rx="6" fill="#ffffff" stroke="#9a998f"/>
+  <text x="846" y="318" font-size="12" font-weight="700" fill="#1d1d1b">Upfront</text>
+  <text x="846" y="334" class="m">at session start,</text>
+  <text x="846" y="348" class="m">cached:</text>
+  <text x="846" y="364" class="m">· preferences</text>
+  <text x="846" y="378" class="m">· open tasks</text>
+  <text x="846" y="392" class="m">· top memories</text>
+  <text x="846" y="406" class="m">· pinned chunks</text>
+  <rect x="996" y="298" width="150" height="120" rx="6" fill="#ffffff" stroke="#9a998f"/>
+  <text x="1006" y="318" font-size="12" font-weight="700" fill="#1d1d1b">Just-in-time</text>
+  <text x="1006" y="334" class="m">per turn, planner:</text>
+  <text x="1006" y="350" class="m">· small talk → none</text>
+  <text x="1006" y="364" class="m">· update → none</text>
+  <text x="1006" y="378" class="m">· recall → memories</text>
+  <text x="1006" y="392" class="m">· covered by pinned</text>
+  <text x="1006" y="406" class="m">  → skip · else search</text>
+  <path class="ln" d="M990 430 V452" marker-end="url(#a)"/>
+
+  <rect x="820" y="456" width="340" height="78" rx="10" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="836" y="478" class="t">Context optimiser</text>
+  <text x="836" y="498" class="s">filter (absolute + relative floor) → dedup</text>
+  <text x="836" y="514" class="s">(containment, hash, cosine/Jaccard) → top-k</text>
+  <text x="836" y="528" class="s">→ extractive compaction under budget</text>
+  <path class="ln" d="M990 534 V552" marker-end="url(#a)"/>
+
+  <rect x="820" y="556" width="340" height="60" rx="10" fill="#f7f7f4" stroke="#9a998f"/>
+  <text x="836" y="578" class="t">Context builder</text>
+  <text x="836" y="598" class="s">11 named sections, per-section caps, 2,400-token</text>
+  <text x="836" y="612" class="s">budget, token report on every turn</text>
+  <path class="ln" d="M990 616 V634" marker-end="url(#a)"/>
+
+  <rect x="820" y="638" width="340" height="60" rx="10" fill="#1d1d1b"/>
+  <text x="836" y="660" font-size="15" font-weight="700" fill="#ffffff">LLM → answer + Sources</text>
+  <text x="836" y="680" font-size="12" fill="#d7d6cf">Claude (Anthropic API) or offline extractive;</text>
+  <text x="836" y="694" font-size="12" fill="#d7d6cf">cites [S#] retrieved · [P#] pinned · [M] memory</text>
+
+  <!-- pipeline -> optimiser ; tiers -> upfront -->
+  <path class="ln" d="M780 668 H800 V495 H816" marker-end="url(#a)"/>
+  <path class="dsh" d="M400 318 H420 V228 H800 V350 H832" marker-end="url(#a)"/>
+  <text x="560" y="223" class="lbl">tiers 1–3 + pinned knowledge loaded upfront</text>
+
+  <!-- consolidation band -->
+  <rect x="40" y="790" width="1120" height="82" rx="10" fill="#f1f0ea" stroke="#9a998f"/>
+  <text x="56" y="814" class="t">Write paths &amp; consolidation</text>
+  <text x="56" y="836" class="s">Every turn: rule-based extraction → Tier 3 (merge if cosine ≥ 0.90, supersede by slot, keep history) · preferences → Tier 2 · step completion → Tier 2 task · tool outputs → Tier 1.</text>
+  <text x="56" y="856" class="s">Session compaction: &gt;10 live messages → oldest folded into the rolling summary.  Session end: episode summary → Tier 3 · working-memory snapshot → Tier 2 task (restored next session).</text>
+  <path class="dsh" d="M990 698 V760 H220 V750" marker-end="url(#a)"/>
+  <text x="600" y="778" class="lbl">writes after each turn</text>
+</svg>

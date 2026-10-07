@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.memagent/
+.demo_state/
+.eval_state/
+.venv/
+.env
